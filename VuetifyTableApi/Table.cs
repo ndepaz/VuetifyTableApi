@@ -21,13 +21,35 @@ namespace VuetifyTableApi
         public List<object> rows { get; set; }
         public string[] filterableColumns { get; set; }
         public List<string> selectedHeaders { get; set; }
+        /// <summary>
+        /// SkipHeaders is used to inform the front end that it should hide these column headers. 
+        /// In a future version, this property maybe renamed.
+        /// </summary>
         public List<string> skipHeaders { get; set; }
+        /// <summary>
+        /// skipHeaderVirtualProps is best to inform the front end to hide all virtual properties in a model class.
+        /// This is because some entity classes can have relations we may want in front end but we don't necessarly want to display them.
+        /// </summary>
         public bool skipHeaderVirtualProps { get; set; }
+        /// <summary>
+        /// This is used when a strongly typed model class has virtual properties and you don't want to display these but request front-end to delete these.
+        /// </summary>
         public bool shouldDeleteHeaderVirtualProps { get; set; }
+        /// <summary>
+        /// This property can be used when you want to inform front end to include the virtual properties in front end.
+        /// </summary>
         public string[] includeOnlyTheseVirtualHeadersFromObject { get; set; }
+        /// <summary>
+        /// This should be what's needed for most cases, when you only want a specific amount of headers displayed in frontend.
+        /// </summary>
         public List<string> useHeaders { get; set; }
+        /// <summary>
+        /// Can be used when you have unwanted column headers.
+        /// </summary>
         public List<string> shouldDeleteColumns { get; set; }
-
+        /// <summary>
+        /// When set, property names matching a name, will be added to skipHeaders.
+        /// </summary>
         public Regex skipHeadersRegex { get; set; }
         public Table()
         {
@@ -50,6 +72,12 @@ namespace VuetifyTableApi
                 }
             }
         }
+        /// <summary>
+        /// Assumes that the collection objects (usually anonymous/dynamic types) will have matching property names that later will be translated into columns headers when displayed via front-end.
+        /// </summary>
+        /// <param name="useTheseHeaders"></param>
+        /// <param name="headerType"></param>
+        /// <param name="valueHeaderType"></param>
         public void SetHeadersOverride(List<string> useTheseHeaders, DisplayHeaderType headerType = DisplayHeaderType.UPPER, ValueHeaderType valueHeaderType = ValueHeaderType.firstCharLower)
         {
             if(this.skipHeaders.Count() > 0)
@@ -60,6 +88,12 @@ namespace VuetifyTableApi
             var columnNames = useTheseHeaders;
             this.setHeaders(columnNames, headerType, valueHeaderType);
         }
+        /// <summary>
+        /// When using collection which contains model classes, this function can be used to control the what to display as column headers. 
+        /// </summary>
+        /// <typeparam name="RecordSample"></typeparam>
+        /// <param name="headerType"></param>
+        /// <param name="valueHeaderType"></param>
         public void SetHeaders<RecordSample>(DisplayHeaderType headerType = DisplayHeaderType.UPPER, ValueHeaderType valueHeaderType = ValueHeaderType.firstCharLower)
         {
             var objectType = typeof(RecordSample);

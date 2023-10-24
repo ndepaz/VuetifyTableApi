@@ -16,10 +16,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="..\..\..\..\Downloads\LIMS-master (2)\LIMS-master\LICENSE.md">
-      <Pack>True</Pack>
-      <PackagePath></PackagePath>
-    </None>
     <None Include="LICENSE.md">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
