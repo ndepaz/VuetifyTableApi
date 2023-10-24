@@ -2,20 +2,22 @@
 {
     public class TableHeader
     {
-        
+
         private bool _filterable;
-        private string _align;
+        private string _align;// values "start", " d-none"
         public bool shouldDeleteColumn;
         public string text { get; set; }
         public string value { get; set; }
-        public bool filterable { 
-            get 
+        public bool filterable
+        {
+            get
             {
-                return _filterable; 
-            } 
-            set {
+                return _filterable;
+            }
+            set
+            {
                 _filterable = value;
-            } 
+            }
         }
         public string align
         {
